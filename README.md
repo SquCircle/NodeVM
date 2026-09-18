@@ -6,6 +6,9 @@
 
 可以解析为**NodeVM**节点树的**动态类型语言**，使用贴近**JavaScript**的C系语法设计。
 
+## 体验链接
+[NodeVM Player](kn.codemao.cn/player?type=2&workId=328981781)
+
 ## 语法
 
 ### 注释
