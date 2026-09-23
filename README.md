@@ -165,11 +165,11 @@ if (true) {
 ```
 
 ### 错误处理
-NodeCode支持使用**try-catch**进行错误处理，同时提供`error(msg)`来抛出自定义错误。
+NodeCode支持使用**try-catch**进行错误处理，使用`throw`关键字抛出值，使用`error(msg)`来生成自定义错误。
 ```nodecode
 try {
 	print("try");
-	error("test");
+	throw error("test");
 } catch(e) {
 	print(e);
 }
