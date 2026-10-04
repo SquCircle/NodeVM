@@ -188,7 +188,7 @@ load("print(a);", newEnv(environ, {"a": 123}, false))();
 
 ### 自举
 NodeCode提供了`load()`函数，支持**从文本动态加载**NodeCode代码。
-加载后会包装为**函数**，作用域位于**全局**，**不立即执行**。
+加载后会包装为**函数**，作用域需要自行提交，**不立即执行**。
 ```nodecode
 var f = load("print(\"test\");", environ);
 /* 使用 */
