@@ -65,15 +65,15 @@ NodeCode提供了一些运算符。
 /* 数值运算 */
 + - * /
 ^ /* 幂运算 */
-% /* 模运算 *"
+% /* 模运算 */
 
 /* 复合赋值 */
 += -= *= /= ^= %=
 
 /* 逻辑运算 */
 == != > >= < <=
-/* 与 */ &
-/* 或 */ |
+/* 短路与 */ &&
+/* 短路或 */ ||
 /* 非 */ !
 
 /* 三元运算符 */
@@ -139,7 +139,7 @@ var funcVar = function(a) /* 使用匿名函数，可以携带参数 */ {};
 ```
 
 ### 控制流
-NodeCode支持**if-else if-else**、**while**、**for**、**break**、**continue**、**return**控制流。
+NodeCode支持**if-else if-else**、**while**、**for**、**break**、**continue**、**return**、**throw**控制流。
 ```nodecode
 /* while循环 & break */
 var i = 0;
@@ -165,7 +165,7 @@ if (true) {
 ```
 
 ### 错误处理
-NodeCode支持使用**try-catch**进行错误处理，使用`throw`关键字抛出值，使用`error(msg)`来生成自定义错误。
+NodeCode支持使用**try-catch**进行错误处理，同时提供`error(msg)`来构造自定义错误。使用`throw`关键字抛出任意类型数据。
 ```nodecode
 try {
 	print("try");
@@ -178,11 +178,19 @@ try {
 ### I/O
 NodeCode提供了两个内置I/O函数：`print()`和`input()`。
 
+### 环境
+NodeCode的环境是包含父环境、符号表和冒泡穿透性的上下文。
+使用`environ`关键字获取当前代码所在的环境。
+使用`newEnv()`函数构造一个新的作用域。
+```nodecode
+load("print(a);", newEnv(environ, {"a": 123}, false))();
+```
+
 ### 自举
 NodeCode提供了`load()`函数，支持**从文本动态加载**NodeCode代码。
 加载后会包装为**函数**，作用域位于**全局**，**不立即执行**。
 ```nodecode
-var f = load("print(\"test\");");
+var f = load("print(\"test\");", environ);
 /* 使用 */
 f();
 ```
